@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import EditTask from "./pages/EditTask";
 import "./styles/theme";
 
 
@@ -15,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/dashboard" element={<Dashboard />}/>
-
+        <Route path="/edit-task" element={<EditTask />}/>
       </Routes>
     </Router>
   </React.StrictMode>

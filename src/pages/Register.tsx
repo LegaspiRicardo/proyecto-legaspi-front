@@ -1,9 +1,10 @@
 import React from "react";
-import { TextField, Button, Container, Box, Typography} from "@mui/material";
+import { TextField, Button, Container, Box, Typography, Link} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
+    const Nnavigate = useNavigate();
 
     const handleRegister = (event: React.FormEvent) => {
         event.preventDefault();
@@ -55,7 +56,25 @@ const Register: React.FC = () => {
 
                 </Box>
             </Box>
+
+                        <Box sx={{mt:2}}></Box>
+            <Typography variant="body2">
+                ¿Ya tienes cuenta? {' '}
+                <Link component="button"
+                variant="body2"
+                onClick={()=> Nnavigate('/')} >
+                Inicia sesión aqui</Link>
+                
+
+
+            </Typography>
         </Container>
-    );
+    
+
+
+
+);
+
+                    
 };
 export default Register;
