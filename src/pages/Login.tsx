@@ -1,16 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextField, Button, Container, Box, Typography, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 
 const Login:React.FC = () =>{
 
 const Nnavigate = useNavigate();
-const handleSubmit = (event: React.FormEvent) =>{
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+
+
+    const handleSubmit = async (event: React.FormEvent) =>{
     event.preventDefault();
-    console.log("Inicio de sesión exitoso");
-    Nnavigate("/dashboard");  //Redirigir a la pagina de inicio despues del inicio de sesion
+
+
+    try{
+        //enviar las credenciales al backend
+        const response = await axios.post('http://localhost:5000/api/login', 
+            {
+            email, password,
+            }
+        );
+
+        console.log('token recibido: ', response.data.token);
+        localStorage.setItem('token', `Bearer ${response.data.token}` ); //Guarar el token
+        setErrorMessage('');
+        Nnavigate('/dashboard'); //Redireccionar al dashboard despues de iniciar sesion
+  
+    } catch(error:any){
+        //manejo de errores
+        console.error("Error al iniciar sesion: ", error);
+        setErrorMessage(error.response?.data?.message || "Error al iniciar sesion. Por favor, intentalo de nuevo");
+    }
+
 };
 
  return(
@@ -26,6 +52,9 @@ const handleSubmit = (event: React.FormEvent) =>{
                     label="Correo electronico"
                     margin="normal"
                     type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 ></TextField>
 
 
@@ -36,7 +65,17 @@ const handleSubmit = (event: React.FormEvent) =>{
                     margin="normal"
                     type="password"
                     required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 ></TextField>
+
+                {
+                    errorMessage && (
+                        <Typography color="error" variant="body2" sx={{mt:1}}>
+                            {errorMessage}
+                        </Typography>
+                    )
+                }
 
                 <Button
                 fullWidth

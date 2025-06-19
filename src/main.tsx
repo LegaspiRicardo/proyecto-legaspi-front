@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import EditTask from "./pages/EditTask";
 import "./styles/theme";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 
@@ -15,9 +16,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/dashboard" 
+          element={<PrivateRoute>
+                        <Dashboard/>
+                  </PrivateRoute>}/>
         <Route path="/edit-task" element={<EditTask />}/>
       </Routes>
     </Router>
+
   </React.StrictMode>
 );
