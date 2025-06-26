@@ -3,3 +3,6 @@ Comandos npm para el front
 npm install @mui/material @emotion/react @emotion/styled
 npm install react-router-dom axios zustand
 npm install axios
+
+Para generar el JWT del archivo .env
+https://jwt.io/
