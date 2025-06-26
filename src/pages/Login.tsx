@@ -20,7 +20,7 @@ const Nnavigate = useNavigate();
 
     try{
         //enviar las credenciales al backend
-        const response = await axios.post('http://localhost:5000/api/login', 
+        const response = await axios.post('http://localhost:5000/api/auth/login', 
             {
             email, password,
             }
@@ -55,7 +55,7 @@ const Nnavigate = useNavigate();
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                ></TextField>
+                />
 
 
 
@@ -67,7 +67,7 @@ const Nnavigate = useNavigate();
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                ></TextField>
+                />
 
                 {
                     errorMessage && (
@@ -87,18 +87,14 @@ const Nnavigate = useNavigate();
 
             </Box>
 
-            <Box sx={{mt:2}}></Box>
-            <Typography variant="body2">
-                ¿No tienes una cuenta? {' '}
-                <Link component="button"
-                variant="body2"
-                onClick={()=> Nnavigate('/register')} >
-                Registrate aqui</Link>
-                
-
-
-            </Typography>
-
+            <Box sx={{mt:2}}>
+                <Typography variant="body2">
+                    ¿No tienes una cuenta? {' '}
+                    <Link component="button" variant="body2" onClick={()=> Nnavigate('/register')} >
+                        Registrate aqui
+                    </Link>
+                </Typography>
+            </Box>
         </Box>
 
     </Container>
