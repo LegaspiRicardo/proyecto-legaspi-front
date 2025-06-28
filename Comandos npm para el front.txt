@@ -6,3 +6,6 @@ npm install axios
 
 Para generar el JWT del archivo .env
 https://jwt.io/
+
+
+npm install @mui/icons-material
