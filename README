@@ -11,3 +11,5 @@ https://jwt.io/
 npm install @mui/icons-material
 
 npm install idb
+
+npm install vite-plugin-pwa
